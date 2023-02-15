@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class SwapperNoSwapping {
+public class c {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
@@ -37,7 +37,11 @@ public class SwapperNoSwapping {
             minSwaps = dsc;
         
         double answer = Math.ceil(time/minSwaps);
-        System.out.println(String.format("%.0f", answer));
+        
+        if(minSwaps == 0)
+            System.out.println("Butz loses!");
+        else
+            System.out.println(String.format("%.0f", answer));
     }
     
     public static int dscMerge(int arr[], int l, int m, int r)
