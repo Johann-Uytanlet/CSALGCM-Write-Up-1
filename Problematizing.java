@@ -4,46 +4,47 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Problematizing {
-	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		
-		String[] parts = br.readLine().trim().split(" ");
-		int n = Integer.parseInt(parts[0]);
-		int t = Integer.parseInt(parts[1]);
-		int[][] problems = new int[n][2];
+public class TestingArrays {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
-		for(int i = 0; i < n; i++) {
-			parts = br.readLine().trim().split(" ");
-			for(int j = 0; j < 2; j++){	
-          		problems[i][j] = Integer.parseInt(parts[j]);
+        String[] parts = br.readLine().trim().split(" ");
+        int n = Integer.parseInt(parts[0]);
+        int t = Integer.parseInt(parts[1]);
+        int[][] problems = new int[n][2];
+
+        for(int i = 0; i < n; i++) {
+            parts = br.readLine().trim().split(" ");
+            for(int j = 0; j < 2; j++){
+                problems[i][j] = Integer.parseInt(parts[j]);
             }
-		}
-		System.out.println(solve(n,t,problems));
-	}
-  
-  	public static String solve(int n, int t, int[][] problems){
+        }
+        System.out.println(solve(n,t,problems));
+    }
+
+    public static String solve(int n, int t, int[][] problems){
         // compute and return answer here
         //int[] temp = new int[2];
         sort(problems, 0, n-1);
         if(t < problems[0][0])
             return "This exam is impossible!";
+        else if(problems[0][0] == -1)
+            return "This exam is impossible!";
         else{
             int count = 0;
-            while(t > 0){
+            while(t >= 0 && count < n){
                 t = t - problems[count][0];
                 count++;
             }
-            
+
             if(t < 0)
                 count--;
-            
             return String.valueOf(count);
         }
     }
-    
-    
+
+
     public static boolean lessThan(int arr1[], int arr2[]){
         if(arr1[0] == -1)
             return false;
